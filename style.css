@@ -1,0 +1,71 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.container {
+    font-family: 'Poppins', sans-serif;
+    margin: 20px;
+    font-size: 1.4rem;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+}
+
+.main-heading {
+    padding: 20px;
+}
+
+#book-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+#book-form > .form-group {
+    height: 25px;
+}
+
+#book-form label {
+    display: inline-block;
+    width: 70px;
+    text-align: right;
+}
+
+#book-form input {
+    width: 300px;
+    height: 100%;
+    padding: 5px;
+}
+
+#book-form > .form-submit-btn {
+    width: 100%;
+    font-family: inherit;
+    font-weight: 600;
+    padding: 5px;
+    font-size: 1.2rem;
+    background: #F5F8FA;
+    border-radius: 20px;
+    border: none;
+}
+
+table {
+    margin: 10px;
+    border-spacing: 50px 0;
+}
+
+table * {
+    font-weight: normal;
+    margin: 20px;
+}
+
+table th {
+    font-style: italic;
+    font-weight: 500;
+}
+
+
