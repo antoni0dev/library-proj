@@ -36,7 +36,7 @@ class UI {
         row.innerHTML = `<td>${book.title}</td>
                          <td>${book.author}</td>
                          <td>${book.isbn}</td>
-                         <td><a href="#" class="delete">X</a></td>`;
+                         <td><a href="#" style="color: black; text-decoration: none" class="delete">X</a></td>`;
 
         list.appendChild(row);
     }
@@ -52,6 +52,35 @@ class UI {
         document.querySelector('#author').value = '';
         document.querySelector('#isbn').value = '';
     };
+
+    static showAlert(message) {
+
+        const div = document.createElement('div');
+        div.className = 'alert';
+        div.appendChild(document.createTextNode(message));
+        div.style.height = '50px';
+        // div.style.width = '375px'
+        div.style.textAlign = 'left';
+        div.style.padding = '15px';
+        div.style.color = '#f1f1f1';
+        div.style.fontFamily = 'inherit';
+
+        if (message.includes('Error')) {
+            div.style.backgroundColor = '#ff6961';
+        } else if (message.includes('Success')) {
+            div.style.backgroundColor = '#90EE90';
+        } else {
+            div.style.backgroundColor = '#34bbfa';         
+        }
+
+        const container = document.querySelector('.container');
+        const form = document.querySelector('#book-form');
+        
+        container.insertBefore(div, form);
+
+        // Remove alert after 3 seconds
+        setTimeout(() => document.querySelector('.alert').remove(), 3000);
+    }
 }
 
 // Events - submit book, remove book, display books
@@ -59,7 +88,7 @@ class UI {
 // Display Books at Page Load
 document.addEventListener('DOMContentLoaded', UI.displayBooks());
 
-// Read Form Data0
+// Read Form Data and Submit Book to List and Storage
 const form = document.querySelector('#book-form');
 form.addEventListener('submit', e => {
     e.preventDefault();
@@ -70,7 +99,7 @@ form.addEventListener('submit', e => {
 
     if (title === '' || author === '' || isbn === '') {
         // Show error message
-        showAlert();
+        UI.showAlert('Error: Please fill in all fields!');
     } else {
         const book = new Book(title, author, isbn);
 
@@ -83,11 +112,13 @@ form.addEventListener('submit', e => {
         // Add Book to Local Storage
 
         // Show success message
-        showAlert('Book successfully added!');
+        UI.showAlert('Success!');
     }
 });
 
 // Delete Book from List
 document.querySelector('#book-list').addEventListener('click', e => {
     UI.deleteBook(e.target.parentElement.parentElement); 
+
+    UI.showAlert('Book was successfully removed!');
 });
