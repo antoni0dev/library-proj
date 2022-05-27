@@ -49,3 +49,29 @@ class UI {
 // Display Books at Page Load
 
 document.addEventListener('DOMContentLoaded', UI.displayBooks());
+
+// Read Form Data
+
+const form = document.querySelector('#book-form');
+form.addEventListener('submit', e => {
+    e.preventDefault();
+
+    const title = document.querySelector('#title').value;
+    const author = document.querySelector('#author').value;
+    const isbn = document.querySelector('#isbn').value;
+
+    if (title === '' || author === '' || isbn === '') {
+        // Show error message
+        showAlert();
+    } else {
+        const book = new Book(title, author, isbn);
+
+        // Add New Book to List
+
+        UI.addBookToList(book);
+
+        // Add Book to Local Storage
+
+        // Show success message
+    }
+});
