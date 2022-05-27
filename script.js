@@ -8,6 +8,8 @@ class Book {
     };
 }
 
+// UI Functionality - display books, add books, remove books , clearForm, showAlerts
+
 class UI {
     static displayBooks() {
         const storedBooks = [
@@ -40,9 +42,19 @@ class UI {
 
         list.appendChild(row);
     }
-}
 
-// UI Functionality - display books, add books, remove books , clearForm, showAlerts
+    static deleteBook(el) {
+        const list = document.querySelector('#book-list');
+
+        list.removeChild(el);
+    }
+
+    static clearForm() {
+        document.querySelector('#title').value = '';
+        document.querySelector('#author').value = '';
+        document.querySelector('#isbn').value = '';
+    };
+}
 
 // Events - submit book, remove book, display books
 
@@ -70,8 +82,18 @@ form.addEventListener('submit', e => {
 
         UI.addBookToList(book);
 
+        // Clear Form
+
+        UI.clearForm();
+
         // Add Book to Local Storage
 
         // Show success message
     }
+});
+
+// Delete Book from List
+
+document.querySelector('#book-list').addEventListener('click', e => {
+    UI.deleteBook(e.target.parentElement.parentElement); 
 });
