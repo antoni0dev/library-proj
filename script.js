@@ -10,9 +10,21 @@ class Book {
 
 class UI {
     static displayBooks() {
-        let books;
+        const storedBooks = [
+            {
+                title: 'Book 1',
+                author: 'John Doe',
+                isbn: '54123'
+            },
+            {
+                title: 'Book 2',
+                author: 'Joe Doe',
+                isbn: '24123'
+            }
+        ];
 
         // books = Store.getBooks();
+        let books = storedBooks;
 
         books.forEach(book => UI.addBookToList(book));
     }
@@ -33,3 +45,7 @@ class UI {
 // UI Functionality - display books, add books, remove books , clearForm, showAlerts
 
 // Events - submit book, remove book, display books
+
+// Display Books at Page Load
+
+document.addEventListener('DOMContentLoaded', UI.displayBooks());
