@@ -145,6 +145,7 @@ form.addEventListener('submit', e => {
         UI.clearForm();
 
         // Add Book to Local Storage
+        Storage.addBook(book);
 
         // Show success message
         UI.showAlert('Success!');
@@ -154,6 +155,8 @@ form.addEventListener('submit', e => {
 // Delete Book from List
 document.querySelector('#book-list').addEventListener('click', e => {
     UI.deleteBook(e.target.parentElement.parentElement); 
+
+    Storage.deleteBook(book.isbn);
 
     UI.showAlert('Book was successfully removed!');
 });
