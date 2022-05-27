@@ -1,5 +1,4 @@
 // Book Class - used to instantiate books
-
 class Book {
     constructor(title, author, isbn) {
         this.title = title;
@@ -9,7 +8,6 @@ class Book {
 }
 
 // UI Functionality - display books, add books, remove books , clearForm, showAlerts
-
 class UI {
     static displayBooks() {
         const storedBooks = [
@@ -59,11 +57,9 @@ class UI {
 // Events - submit book, remove book, display books
 
 // Display Books at Page Load
-
 document.addEventListener('DOMContentLoaded', UI.displayBooks());
 
-// Read Form Data
-
+// Read Form Data0
 const form = document.querySelector('#book-form');
 form.addEventListener('submit', e => {
     e.preventDefault();
@@ -79,21 +75,19 @@ form.addEventListener('submit', e => {
         const book = new Book(title, author, isbn);
 
         // Add New Book to List
-
         UI.addBookToList(book);
 
         // Clear Form
-
         UI.clearForm();
 
         // Add Book to Local Storage
 
         // Show success message
+        showAlert('Book successfully added!');
     }
 });
 
 // Delete Book from List
-
 document.querySelector('#book-list').addEventListener('click', e => {
     UI.deleteBook(e.target.parentElement.parentElement); 
 });
