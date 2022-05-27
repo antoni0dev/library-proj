@@ -59,7 +59,7 @@ class UI {
         div.className = 'alert';
         div.appendChild(document.createTextNode(message));
         div.style.height = '50px';
-        // div.style.width = '375px'
+        div.style.width = '375px'
         div.style.textAlign = 'left';
         div.style.padding = '15px';
         div.style.color = '#f1f1f1';
@@ -80,6 +80,41 @@ class UI {
 
         // Remove alert after 3 seconds
         setTimeout(() => document.querySelector('.alert').remove(), 3000);
+    }
+}
+
+// Storage Functionality
+
+class Storage {
+    static getBooks() {
+        let books;
+
+        if (!localStorage.getItem('books') === null) {
+            books = []
+        } else {
+            books = JSON.parse(localStorage.getItem('books'));
+        }
+
+        return books;
+    }
+
+    static addBook(book) {
+        const books = Storage.getBooks();
+        
+        books.push(book);
+        localStorage.setItem('books', JSON.stringify(books));
+    }
+
+    static deleteBook(isbn) {
+        const books = Storage.getBooks();
+
+        books.forEach((book, index) => {
+            if (book.isbn === isbn) {
+                books.splice(index, 1);
+            }
+        })
+
+        localStorage.setItem('books', JSON.stringify(books));
     }
 }
 
