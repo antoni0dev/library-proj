@@ -10,22 +10,8 @@ class Book {
 // UI Functionality - display books, add books, remove books , clearForm, showAlerts
 class UI {
     static displayBooks() {
-        const storedBooks = [
-            {
-                title: 'Book 1',
-                author: 'John Doe',
-                isbn: '54123'
-            },
-            {
-                title: 'Book 2',
-                author: 'Joe Doe',
-                isbn: '24123'
-            }
-        ];
 
-        // books = Store.getBooks();
-        let books = storedBooks;
-
+        const books = Storage.getBooks();
         books.forEach(book => UI.addBookToList(book));
     }
 
@@ -42,9 +28,9 @@ class UI {
     }
 
     static deleteBook(el) {
-        const list = document.querySelector('#book-list');
-
-        list.removeChild(el);
+        if (el.classList.contains('delete')) {
+            el.parentElement.parentElement.remove();
+        }
     }
 
     static clearForm() {
@@ -62,7 +48,7 @@ class UI {
         div.style.width = '375px'
         div.style.textAlign = 'left';
         div.style.padding = '15px';
-        div.style.color = '#f1f1f1';
+        div.style.color = '#black';
         div.style.fontFamily = 'inherit';
 
         if (message.includes('Error')) {
@@ -154,9 +140,9 @@ form.addEventListener('submit', e => {
 
 // Delete Book from List
 document.querySelector('#book-list').addEventListener('click', e => {
-    UI.deleteBook(e.target.parentElement.parentElement); 
+    UI.deleteBook(e.target); 
 
-    Storage.deleteBook(book.isbn);
+    Storage.deleteBook(e.target.parentElement.previousElementSibling.textContent);
 
     UI.showAlert('Book was successfully removed!');
 });
