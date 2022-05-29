@@ -12,7 +12,8 @@ class UI {
     static displayBooks() {
 
         const books = Storage.getBooks();
-        books.forEach(book => UI.addBookToList(book));
+
+        if (books.length > 0) books.forEach(book => UI.addBookToList(book));
     }
 
     static addBookToList(book) {
