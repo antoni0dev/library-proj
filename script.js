@@ -124,16 +124,9 @@ form.addEventListener('submit', e => {
     } else {
         const book = new Book(title, author, isbn);
 
-        // Add New Book to List
         UI.addBookToList(book);
-
-        // Clear Form
         UI.clearForm();
-
-        // Add Book to Local Storage
         Storage.addBook(book);
-
-        // Show success message
         UI.showAlert('Success!');
     }
 });
